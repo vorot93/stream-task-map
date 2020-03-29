@@ -30,7 +30,7 @@ impl<K, S, V> Default for StreamTaskMap<K, S, V>
 where
     K: Clone + Eq + Hash + Send + Sync + Unpin + 'static,
     S: Stream<Item = V> + Send + Unpin + 'static,
-    V: Clone + Send + 'static,
+    V: Send + 'static,
 {
     fn default() -> Self {
         Self::new()
@@ -41,7 +41,7 @@ impl<K, S, V> StreamTaskMap<K, S, V>
 where
     K: Clone + Eq + Hash + Send + Sync + Unpin + 'static,
     S: Stream<Item = V> + Send + Unpin + 'static,
-    V: Clone + Send + 'static,
+    V: Send + 'static,
 {
     #[must_use]
     pub fn new() -> Self {
@@ -102,7 +102,7 @@ impl<K, S, V> Stream for StreamTaskMap<K, S, V>
 where
     K: Clone + Eq + Hash + Send + Sync + Unpin + 'static,
     S: Stream<Item = V> + Send + Unpin + 'static,
-    V: Clone + Send + 'static,
+    V: Send + 'static,
 {
     type Item = (K, Option<V>);
 
