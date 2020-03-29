@@ -94,9 +94,7 @@ where
     }
 
     pub fn remove(&mut self, key: &K) {
-        if let Some(state) = self.tasks.remove(key) {
-            let _ = state.dropper.send(());
-        }
+        self.tasks.remove(key);
     }
 }
 
